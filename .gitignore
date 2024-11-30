@@ -1,0 +1,13 @@
+.Rproj.user/
+Output/
+Processed_data/
+Raw_data/
+.Rhistory
+*.docx
+*.png
+*.jpg
+*.tiff
+*.tif
+dragons.db
+*.Rproj
+databases_WLF/

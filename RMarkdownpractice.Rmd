@@ -1,0 +1,81 @@
+---
+title: "practice"
+author: "kammer"
+date: "2024-11-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+library(knitr)
+```
+
+
+# Introduction
+
+YAML is Yet Another Markdown Language.  You can do *italics* or you can do **bold** and include a [link](https://blog.djnavarro.net/posts/2023-04-12_metropolis-hastings/)
+
+
+# R code
+
+```{r our first chunk, eval=FALSE}
+values <-  rnorm(9)
+values
+```
+
+
+We can also use echo option to show or not show the code and the results to show or not show the output.
+
+
+# More text tools
+
+# subheadings
+
+Unordered Lists:
+
+-first item
+
+-second item
+
+
+Ordered Lists
+
+1. first
+
+2. second
+
+
+We can insert an image like this: ![alt text](databases_WLF/Assignment_4_Kammer.pdf){width="20%}
+
+
+We can *add* citations^[footnotes]
+
+We can use **math mode** $\alpha \ beta$ and so on.
+
+
+Make tables
+
+```{r Penguins data set}
+penguins_sm <-  head(penguins)
+kable(penguins_sm)
+```
+
+$$
+\begin{aligned}
+\text{resemblance}_{ij} &= \hat{\gamma}_{0j} + 
+\hat{\gamma}_1\text{Intervention}_{ij} + e_{ij}\\
+\hat{\gamma}_{0} &= \hat{\gamma}_0 + \hat{u}_{0j}
+\end{aligned}
+$$
+$$
+\begin{aligned}
+E[X] = \int_{-\infty}^{\infty} xf(x) dx; \\
+
+&\int_{0}^{1} x dx = \frac12 x^2 |_0^1 = \frac12
+\end{aligned}
+$$
+
+
+

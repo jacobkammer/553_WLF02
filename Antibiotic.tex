@@ -1,0 +1,1245 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Antibiotic Resistance},
+  pdfauthor={kammer},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Antibiotic Resistance}
+\author{kammer}
+\date{2024-11-29}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}\label{introduction}
+
+Antibiotic resistance is increasing world wide in pathogenic microbial
+populations. Therapeutic and prophylactic use of antibiotics constitutes
+selective pressure that favors the evolution of antibiotic resistance
+strains. The durability of a resistance mutation in pathogens is partly
+determined by it overall fitness to the organism. Resistant mutations
+usually target key biochemical processes and can potentially impart a
+fitness cost to the microorganism. The goal of this data investigation
+is to study how resistance gene mutations affect the overall fitness of
+a microorganism.
+
+\section{Methods}\label{methods}
+
+Evaluation of the relationship between resistance mutations and fitness
+was by analyzing data from the article \emph{The fitness costs of
+antibiotic resistance mutations} authored by \emph{Melnyk, Wong and
+Kassen}. The data focuses on fitness effects of single chromosomal
+mutations events that lead to the development of antibiotic resistance.
+A special emphasis is placed on gram positive organisms ,specifically
+Staph aureus.
+
+\subsection{Evaluate the ranges of numeric variables in the data
+set}\label{evaluate-the-ranges-of-numeric-variables-in-the-data-set}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{verbatim}
+##  Named list()
+##  - attr(*, "class")= chr [1:2] "theme" "gg"
+##  - attr(*, "complete")= logi FALSE
+##  - attr(*, "validate")= logi TRUE
+\end{verbatim}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+\begin{verbatim}
+## List of 136
+##  $ line                            :List of 6
+##   ..$ colour       : chr "black"
+##   ..$ linewidth    : num 0.5
+##   ..$ linetype     : num 1
+##   ..$ lineend      : chr "butt"
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ rect                            :List of 5
+##   ..$ fill         : chr "white"
+##   ..$ colour       : chr "black"
+##   ..$ linewidth    : num 0.5
+##   ..$ linetype     : num 1
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ text                            :List of 11
+##   ..$ family       : chr ""
+##   ..$ face         : chr "plain"
+##   ..$ colour       : chr "black"
+##   ..$ size         : num 11
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : num 0
+##   ..$ lineheight   : num 0.9
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ title                           : NULL
+##  $ aspect.ratio                    : NULL
+##  $ axis.title                      : NULL
+##  $ axis.title.x                    :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 2.75points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.x.top                :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 0
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 2.75points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.x.bottom             : NULL
+##  $ axis.title.y                    :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : num 90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 2.75points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.y.left               : NULL
+##  $ axis.title.y.right              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : num -90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 0points 2.75points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text                       :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : chr "grey30"
+##   ..$ size         : 'rel' num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x                     :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 2.2points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x.top                 :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 0
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 2.2points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x.bottom              : NULL
+##  $ axis.text.y                     :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 1
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 2.2points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.y.left                : NULL
+##  $ axis.text.y.right               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 0points 2.2points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.theta                 : NULL
+##  $ axis.text.r                     :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 2.2points 0points 2.2points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.ticks                      :List of 6
+##   ..$ colour       : chr "grey20"
+##   ..$ linewidth    : NULL
+##   ..$ linetype     : NULL
+##   ..$ lineend      : NULL
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ axis.ticks.x                    : NULL
+##  $ axis.ticks.x.top                : NULL
+##  $ axis.ticks.x.bottom             : NULL
+##  $ axis.ticks.y                    : NULL
+##  $ axis.ticks.y.left               : NULL
+##  $ axis.ticks.y.right              : NULL
+##  $ axis.ticks.theta                : NULL
+##  $ axis.ticks.r                    : NULL
+##  $ axis.minor.ticks.x.top          : NULL
+##  $ axis.minor.ticks.x.bottom       : NULL
+##  $ axis.minor.ticks.y.left         : NULL
+##  $ axis.minor.ticks.y.right        : NULL
+##  $ axis.minor.ticks.theta          : NULL
+##  $ axis.minor.ticks.r              : NULL
+##  $ axis.ticks.length               : 'simpleUnit' num 2.75points
+##   ..- attr(*, "unit")= int 8
+##  $ axis.ticks.length.x             : NULL
+##  $ axis.ticks.length.x.top         : NULL
+##  $ axis.ticks.length.x.bottom      : NULL
+##  $ axis.ticks.length.y             : NULL
+##  $ axis.ticks.length.y.left        : NULL
+##  $ axis.ticks.length.y.right       : NULL
+##  $ axis.ticks.length.theta         : NULL
+##  $ axis.ticks.length.r             : NULL
+##  $ axis.minor.ticks.length         : 'rel' num 0.75
+##  $ axis.minor.ticks.length.x       : NULL
+##  $ axis.minor.ticks.length.x.top   : NULL
+##  $ axis.minor.ticks.length.x.bottom: NULL
+##  $ axis.minor.ticks.length.y       : NULL
+##  $ axis.minor.ticks.length.y.left  : NULL
+##  $ axis.minor.ticks.length.y.right : NULL
+##  $ axis.minor.ticks.length.theta   : NULL
+##  $ axis.minor.ticks.length.r       : NULL
+##  $ axis.line                       :List of 6
+##   ..$ colour       : chr "black"
+##   ..$ linewidth    : 'rel' num 1
+##   ..$ linetype     : NULL
+##   ..$ lineend      : NULL
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ axis.line.x                     : NULL
+##  $ axis.line.x.top                 : NULL
+##  $ axis.line.x.bottom              : NULL
+##  $ axis.line.y                     : NULL
+##  $ axis.line.y.left                : NULL
+##  $ axis.line.y.right               : NULL
+##  $ axis.line.theta                 : NULL
+##  $ axis.line.r                     : NULL
+##  $ legend.background               :List of 5
+##   ..$ fill         : NULL
+##   ..$ colour       : logi NA
+##   ..$ linewidth    : NULL
+##   ..$ linetype     : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ legend.margin                   : 'margin' num [1:4] 5.5points 5.5points 5.5points 5.5points
+##   ..- attr(*, "unit")= int 8
+##  $ legend.spacing                  : 'simpleUnit' num 11points
+##   ..- attr(*, "unit")= int 8
+##  $ legend.spacing.x                : NULL
+##  $ legend.spacing.y                : NULL
+##  $ legend.key                      : NULL
+##  $ legend.key.size                 : 'simpleUnit' num 1.2lines
+##   ..- attr(*, "unit")= int 3
+##  $ legend.key.height               : NULL
+##  $ legend.key.width                : NULL
+##  $ legend.key.spacing              : 'simpleUnit' num 5.5points
+##   ..- attr(*, "unit")= int 8
+##  $ legend.key.spacing.x            : NULL
+##  $ legend.key.spacing.y            : NULL
+##  $ legend.frame                    : NULL
+##  $ legend.ticks                    : NULL
+##  $ legend.ticks.length             : 'rel' num 0.2
+##  $ legend.axis.line                : NULL
+##  $ legend.text                     :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : 'rel' num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ legend.text.position            : NULL
+##  $ legend.title                    :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ legend.title.position           : NULL
+##  $ legend.position                 : chr "right"
+##  $ legend.position.inside          : NULL
+##  $ legend.direction                : NULL
+##  $ legend.byrow                    : NULL
+##  $ legend.justification            : chr "center"
+##  $ legend.justification.top        : NULL
+##  $ legend.justification.bottom     : NULL
+##  $ legend.justification.left       : NULL
+##  $ legend.justification.right      : NULL
+##  $ legend.justification.inside     : NULL
+##  $ legend.location                 : NULL
+##  $ legend.box                      : NULL
+##  $ legend.box.just                 : NULL
+##  $ legend.box.margin               : 'margin' num [1:4] 0cm 0cm 0cm 0cm
+##   ..- attr(*, "unit")= int 1
+##  $ legend.box.background           : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ legend.box.spacing              : 'simpleUnit' num 11points
+##   ..- attr(*, "unit")= int 8
+##   [list output truncated]
+##  - attr(*, "class")= chr [1:2] "theme" "gg"
+##  - attr(*, "complete")= logi TRUE
+##  - attr(*, "validate")= logi TRUE
+\end{verbatim}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-1-3.pdf}
+
+\begin{verbatim}
+## List of 136
+##  $ line                            :List of 6
+##   ..$ colour       : chr "black"
+##   ..$ linewidth    : num 0.5
+##   ..$ linetype     : num 1
+##   ..$ lineend      : chr "butt"
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ rect                            :List of 5
+##   ..$ fill         : chr "white"
+##   ..$ colour       : chr "black"
+##   ..$ linewidth    : num 0.5
+##   ..$ linetype     : num 1
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ text                            :List of 11
+##   ..$ family       : chr ""
+##   ..$ face         : chr "plain"
+##   ..$ colour       : chr "black"
+##   ..$ size         : num 11
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : num 0
+##   ..$ lineheight   : num 0.9
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ title                           : NULL
+##  $ aspect.ratio                    : NULL
+##  $ axis.title                      : NULL
+##  $ axis.title.x                    :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 2.75points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.x.top                :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 0
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 2.75points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.x.bottom             : NULL
+##  $ axis.title.y                    :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : num 90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 2.75points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.y.left               : NULL
+##  $ axis.title.y.right              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : num -90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 0points 2.75points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text                       :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : chr "grey30"
+##   ..$ size         : 'rel' num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x                     :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 2.2points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x.top                 :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 0
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 2.2points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x.bottom              : NULL
+##  $ axis.text.y                     :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 1
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 2.2points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.y.left                : NULL
+##  $ axis.text.y.right               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 0points 2.2points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.theta                 : NULL
+##  $ axis.text.r                     :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 2.2points 0points 2.2points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.ticks                      :List of 6
+##   ..$ colour       : chr "grey20"
+##   ..$ linewidth    : NULL
+##   ..$ linetype     : NULL
+##   ..$ lineend      : NULL
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ axis.ticks.x                    : NULL
+##  $ axis.ticks.x.top                : NULL
+##  $ axis.ticks.x.bottom             : NULL
+##  $ axis.ticks.y                    : NULL
+##  $ axis.ticks.y.left               : NULL
+##  $ axis.ticks.y.right              : NULL
+##  $ axis.ticks.theta                : NULL
+##  $ axis.ticks.r                    : NULL
+##  $ axis.minor.ticks.x.top          : NULL
+##  $ axis.minor.ticks.x.bottom       : NULL
+##  $ axis.minor.ticks.y.left         : NULL
+##  $ axis.minor.ticks.y.right        : NULL
+##  $ axis.minor.ticks.theta          : NULL
+##  $ axis.minor.ticks.r              : NULL
+##  $ axis.ticks.length               : 'simpleUnit' num 2.75points
+##   ..- attr(*, "unit")= int 8
+##  $ axis.ticks.length.x             : NULL
+##  $ axis.ticks.length.x.top         : NULL
+##  $ axis.ticks.length.x.bottom      : NULL
+##  $ axis.ticks.length.y             : NULL
+##  $ axis.ticks.length.y.left        : NULL
+##  $ axis.ticks.length.y.right       : NULL
+##  $ axis.ticks.length.theta         : NULL
+##  $ axis.ticks.length.r             : NULL
+##  $ axis.minor.ticks.length         : 'rel' num 0.75
+##  $ axis.minor.ticks.length.x       : NULL
+##  $ axis.minor.ticks.length.x.top   : NULL
+##  $ axis.minor.ticks.length.x.bottom: NULL
+##  $ axis.minor.ticks.length.y       : NULL
+##  $ axis.minor.ticks.length.y.left  : NULL
+##  $ axis.minor.ticks.length.y.right : NULL
+##  $ axis.minor.ticks.length.theta   : NULL
+##  $ axis.minor.ticks.length.r       : NULL
+##  $ axis.line                       : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ axis.line.x                     : NULL
+##  $ axis.line.x.top                 : NULL
+##  $ axis.line.x.bottom              : NULL
+##  $ axis.line.y                     : NULL
+##  $ axis.line.y.left                : NULL
+##  $ axis.line.y.right               : NULL
+##  $ axis.line.theta                 : NULL
+##  $ axis.line.r                     : NULL
+##  $ legend.background               :List of 5
+##   ..$ fill         : NULL
+##   ..$ colour       : logi NA
+##   ..$ linewidth    : NULL
+##   ..$ linetype     : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ legend.margin                   : 'margin' num [1:4] 5.5points 5.5points 5.5points 5.5points
+##   ..- attr(*, "unit")= int 8
+##  $ legend.spacing                  : 'simpleUnit' num 11points
+##   ..- attr(*, "unit")= int 8
+##  $ legend.spacing.x                : NULL
+##  $ legend.spacing.y                : NULL
+##  $ legend.key                      : NULL
+##  $ legend.key.size                 : 'simpleUnit' num 1.2lines
+##   ..- attr(*, "unit")= int 3
+##  $ legend.key.height               : NULL
+##  $ legend.key.width                : NULL
+##  $ legend.key.spacing              : 'simpleUnit' num 5.5points
+##   ..- attr(*, "unit")= int 8
+##  $ legend.key.spacing.x            : NULL
+##  $ legend.key.spacing.y            : NULL
+##  $ legend.frame                    : NULL
+##  $ legend.ticks                    : NULL
+##  $ legend.ticks.length             : 'rel' num 0.2
+##  $ legend.axis.line                : NULL
+##  $ legend.text                     :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : 'rel' num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ legend.text.position            : NULL
+##  $ legend.title                    :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ legend.title.position           : NULL
+##  $ legend.position                 : chr "right"
+##  $ legend.position.inside          : NULL
+##  $ legend.direction                : NULL
+##  $ legend.byrow                    : NULL
+##  $ legend.justification            : chr "center"
+##  $ legend.justification.top        : NULL
+##  $ legend.justification.bottom     : NULL
+##  $ legend.justification.left       : NULL
+##  $ legend.justification.right      : NULL
+##  $ legend.justification.inside     : NULL
+##  $ legend.location                 : NULL
+##  $ legend.box                      : NULL
+##  $ legend.box.just                 : NULL
+##  $ legend.box.margin               : 'margin' num [1:4] 0cm 0cm 0cm 0cm
+##   ..- attr(*, "unit")= int 1
+##  $ legend.box.background           : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ legend.box.spacing              : 'simpleUnit' num 11points
+##   ..- attr(*, "unit")= int 8
+##   [list output truncated]
+##  - attr(*, "class")= chr [1:2] "theme" "gg"
+##  - attr(*, "complete")= logi TRUE
+##  - attr(*, "validate")= logi TRUE
+\end{verbatim}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-1-4.pdf}
+
+\begin{verbatim}
+## <ggproto object: Class ScaleDiscrete, Scale, gg>
+##     aesthetics: fill
+##     axis_order: function
+##     break_info: function
+##     break_positions: function
+##     breaks: waiver
+##     call: call
+##     clone: function
+##     dimension: function
+##     drop: TRUE
+##     expand: waiver
+##     get_breaks: function
+##     get_breaks_minor: function
+##     get_labels: function
+##     get_limits: function
+##     get_transformation: function
+##     guide: legend
+##     is_discrete: function
+##     is_empty: function
+##     labels: waiver
+##     limits: NULL
+##     make_sec_title: function
+##     make_title: function
+##     map: function
+##     map_df: function
+##     n.breaks.cache: NULL
+##     na.translate: TRUE
+##     na.value: NA
+##     name: waiver
+##     palette: function
+##     palette.cache: NULL
+##     position: left
+##     range: environment
+##     rescale: function
+##     reset: function
+##     train: function
+##     train_df: function
+##     transform: function
+##     transform_df: function
+##     super:  <ggproto object: Class ScaleDiscrete, Scale, gg>
+\end{verbatim}
+
+\section{Relationship between Numeric
+Variables}\label{relationship-between-numeric-variables}
+
+The relationship between the numeric variables of 1)fitness, 2)SE and
+3)Selection\_coefficient are studied using 4 different approaches.
+
+Scatterplot with color or size Encoding. The x and y axis encodes two ot
+the three variables. Color or size is used to represent the third
+variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ costR, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ fitness, }\AttributeTok{y =}\NormalTok{ Selection\_coefficient, }\AttributeTok{color =}\NormalTok{ SE))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}\FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Scatter Plot with color encoding"}\NormalTok{,}
+                    \AttributeTok{x=}\StringTok{"Fitness"}\NormalTok{,}
+                    \AttributeTok{y =} \StringTok{"Selection Coefficient"}\NormalTok{,}
+                    \AttributeTok{color =} \StringTok{"SE"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ costR, }\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ fitness, }\AttributeTok{y =}\NormalTok{ Selection\_coefficient, }\AttributeTok{size =}\NormalTok{ SE))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Scatter plot with size encoding"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Fitness"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Selection Coefficient"}\NormalTok{,}
+       \AttributeTok{size =} \StringTok{"SE"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-2-2.pdf}
+
+\subsection{Pair Plot (Scatterplot Matrix). The GGally package is used
+to create a scatterplot matrix to visualize pairwise relationships
+between multiple
+variables.}\label{pair-plot-scatterplot-matrix.-the-ggally-package-is-used-to-create-a-scatterplot-matrix-to-visualize-pairwise-relationships-between-multiple-variables.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numericonly }\OtherTok{\textless{}{-}}\NormalTok{ costR }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(fitness, Selection\_coefficient, SE)}
+\CommentTok{\#Use the data}
+\FunctionTok{ggpairs}\NormalTok{(numericonly, }\AttributeTok{title =} \StringTok{\textquotesingle{}Pair Plot\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\subsection{Scatterplot Matrix using the Lattice
+package}\label{scatterplot-matrix-using-the-lattice-package}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{splom}\NormalTok{(numericonly,}
+      \AttributeTok{main =} \StringTok{"Scatterplot Matrix"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\section{Which mutations increae or decrease
+fitness}\label{which-mutations-increae-or-decrease-fitness}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  costR }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{select}\NormalTok{(gene\_mutation, fitness) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{na.omit}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{filter}\NormalTok{(fitness }\SpecialCharTok{\textless{}}\FloatTok{1.0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{distinct}\NormalTok{(gene\_mutation)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       gene_mutation
+## 1       rpoB V1080I
+## 2       rpoB V1080L
+## 3       rpoB E1084K
+## 4       rpoB D1101E
+## 5       rpoB S1127L
+## 6       rpoB S1127P
+## 7        rpoC K334N
+## 8        rpoC T925K
+## 9        rpoC T925R
+## 10      rpoC G1172C
+## 11      rpoC G1172D
+## 12        rpsL K43R
+## 13        rpsL K43T
+## 14        rpsL K88E
+## 15        rpsL K43N
+## 16        rpsL K88R
+## 17   16S rRNA C522T
+## 18   16S rRNA A523C
+## 19   16S rRNA G524C
+## 20  16S rRNA C526T 
+## 21  16S rRNA A1408G
+## 22   16S rRNA C526T
+## 23        rpsL K42T
+## 24        rpsL K42N
+## 25      rpsE C1186U
+## 26      rpsE A1185G
+## 27        gryB G85S
+## 28       gyrB R144S
+## 29       gyrB T173I
+## 30       DHFR H150R
+## 31        EF-G A67T
+## 32       EF-G P406L
+## 33       EF-G S416F
+## 34       EF-G H457Y
+## 35  23S rRNA A2058G
+## 36  23S rRNA A2059G
+## 37       23S A2074C
+## 38       23S A2075G
+## 39        grlA S80F
+## 40        grlA S80Y
+## 41        parC S79F
+## 42       parE D435N
+## 43        gyrA E85K
+## 44        gyrA S81F
+## 45        gyrA D87Y
+## 46        gyrA D87G
+## 47        marR R77L
+## 48        marR R94H
+## 49        gyrA S83L
+## 50        gyrA D87N
+## 51        parC S80I
+## 52       marR delta
+## 53       acrR delta
+## 54        parC S79Y
+## 55        parC D83N
+## 56        parC D83Y
+## 57       rpoB I572F
+## 58       rpoB I572L
+## 59       rpoB S531L
+## 60       rpoB H526Y
+## 61       rpoB H526D
+## 62       rpoB S531W
+## 63       rpoB H526R
+## 64       rpoB S522L
+## 65       rpoB Q513L
+## 66       rpoB H526P
+## 67       rpoB R529Q
+## 68       rpoB H489Q
+## 69       rpoB R492H
+## 70       rpoB H489Y
+## 71       rpoB Q480H
+## 72      rpoB S531W 
+## 73       rpoB D516V
+## 74       rpoB H526N
+## 75       rpoB H526L
+## 76       rpoB D516Y
+## 77       rpoB D516N
+## 78       rpoB R529H
+## 79       rpoB S512F
+## 80       rpoB S531F
+## 81       rpoB L511Q
+## 82       rpoB Q148L
+## 83       rpoB Q418L
+## 84       rpoB P564L
+## 85       rpoB N471Y
+## 86       rpoB N471Q
+## 87       rpoB N471G
+## 88       rpoB I527F
+## 89       rpoB S464P
+## 90       rpoB N474K
+## 91       rpoB A477V
+## 92       rpoB A477N
+## 93       rpoB R484H
+## 94       rpoB S486L
+## 95       rpoB Q468R
+## 96       rpoB Q468L
+## 97       rpoB H481Y
+## 98       rpoB D471E
+## 99       rpoB Q137L
+## 100      rpoB L466S
+## 101      rpoB H481N
+## 102  rpoB deltaL485
+## 103      rpoB D471Y
+## 104      rpoB L488S
+## 105      rpoB P519L
+## 106      rpoB A477D
+## 107      rpoB H481D
+## 108       gyrA D94N
+## 109       gyrA G88C
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{costR }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{select}\NormalTok{(gene\_mutation, fitness) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{na.omit}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{filter}\NormalTok{(fitness}\SpecialCharTok{\textgreater{}} \FloatTok{1.0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{distinct}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      gene_mutation fitness
+## 1        DHFR L41F  1.0340
+## 2        DHFR F99S  1.0510
+## 3        DHFR F99Y  1.0170
+## 4        grlA E84K  1.0200
+## 5       grlA A116E  1.0200
+## 6        parC S79Y  1.0040
+## 7        parC D83Y  1.0700
+## 8        gyrA S81Y  1.0100
+## 9        gyrA S83A  1.0017
+## 10      gyrB S464F  1.0391
+## 11   gyrB delta9nt  1.0153
+## 12 marR delta13 nt  1.0051
+## 13       gyrA S83L  1.0100
+## 14       parC S79Y  1.1500
+## 15      rpoB I572F  1.4182
+## 16      rpoB I572L  1.3587
+## 17      rpoB 1572N  1.3094
+## 18      rpoB I572F  1.4828
+## 19      rpoB I572L  1.5134
+## 20      rpoB 1572N  1.5049
+## 21      rpoB H489Y  1.2200
+## 22      rpoB D516G  1.0300
+## 23      rpoB H526Y  1.0100
+## 24       gyrA D94G  1.0400
+## 25       gyrA D94Y  1.0100
+\end{verbatim}
+
+No apparent relationship between increase or decrease in fitness and
+bacterial type
+
+create ranges of fitness value and assign to general categories
+
+\begin{table}[!t]
+\caption*{
+{\large Fitness Groups}
+} 
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrr}
+\toprule
+Group & Number of organisms & Percentage \\ 
+\midrule\addlinespace[2.5pt]
+Most Fit of All & 5 & 2.79 \\ 
+Highly Fit & 1 & 0.56 \\ 
+Fit & 22 & 12.29 \\ 
+Less Fit & 118 & 65.92 \\ 
+Much Less Fit & 24 & 13.41 \\ 
+Least Fit of All & 9 & 5.03 \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
+
+The cell wall is an important target of mutations that confer antibiotic
+resistance, and thus intuitively, it seems possible that there may be a
+difference in fitness costs associated with antibiotic resistance
+between Gram-positive, which has a much thicker layer of peptidoglycan
+in their cell wall, and Gram-negative bacteria, which has a much thinner
+cell wall.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GramFIT }\OtherTok{\textless{}{-}}\NormalTok{ costR }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(gram\_stain }\SpecialCharTok{==} \StringTok{"negative"} \SpecialCharTok{|}\NormalTok{ gram\_stain }\SpecialCharTok{==} \StringTok{"positive"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(gram\_stain) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_fitness =} \FunctionTok{mean}\NormalTok{(fitness),}
+            \AttributeTok{IQR =} \FunctionTok{IQR}\NormalTok{(fitness),}
+            \AttributeTok{Minumum =} \FunctionTok{min}\NormalTok{(fitness),}
+            \AttributeTok{Maximum =} \FunctionTok{max}\NormalTok{(fitness),}
+            \AttributeTok{Standard\_deviation =} \FunctionTok{sd}\NormalTok{(fitness))}
+
+\NormalTok{GramFIT }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{gt}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{tab\_header}\NormalTok{(}\AttributeTok{title =} \StringTok{"Differences in fitness based on gram stain"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{cols\_label}\NormalTok{(}\AttributeTok{gram\_stain =} \StringTok{"Gram stain"}\NormalTok{,}
+             \AttributeTok{mean\_fitness =} \StringTok{"Mean Fitness"}\NormalTok{,}
+             \AttributeTok{IQR =} \StringTok{"Interquantile Range"}\NormalTok{,}
+             \AttributeTok{Minumum=}\StringTok{"Minimum"}\NormalTok{,}
+             \AttributeTok{Maximum=} \StringTok{"Maximum"}\NormalTok{,}
+             \AttributeTok{Standard\_deviation=} \StringTok{"Standard Deviation"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[!t]
+\caption*{
+{\large Differences in fitness based on gram stain}
+} 
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrr}
+\toprule
+Gram stain & Mean Fitness & Interquantile Range & Minimum & Maximum & Standard Deviation \\ 
+\midrule\addlinespace[2.5pt]
+negative & 0.9733961 & 0.1294500 & 0.725 & 1.5134 & 0.1678243 \\ 
+positive & 0.8224603 & 0.2226997 & 0.133 & 1.2200 & 0.2154585 \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
+
+Gram-positive bacteria had a significantly greater fitness costs
+associated with resistance mutations (mean fitness = 0.822) when
+compared with Gram-negative bacteria (mean fitness = 0.973). Caution
+must be used in interpreting this result because there were a greater
+number of Gram-negative than Gram-positive bacteria in the data set.
+
+Mean relative fitness and 95\% CI of antibiotic Resistance mutation
+associated with a specific antibiotic, Fitness cost \textless{} 1
+indicates less fit
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{costR }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(antibioticType, fitness) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(antibioticType) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_cost =} \FunctionTok{mean}\NormalTok{(fitness),}
+            \AttributeTok{stddev =} \FunctionTok{sd}\NormalTok{(fitness, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+            \AttributeTok{meansd\_l =}\NormalTok{ mean\_cost }\SpecialCharTok{{-}}\NormalTok{ stddev,}
+            \AttributeTok{meansd\_u =}\NormalTok{ mean\_cost }\SpecialCharTok{+}\NormalTok{ stddev) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ mean\_cost, }\AttributeTok{y =}\NormalTok{ antibioticType))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{1}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_errorbar}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{xmin =}\NormalTok{ meansd\_l, }\AttributeTok{xmax =}\NormalTok{ meansd\_u))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Mean Fitness Cost"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Antibiotic"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Fitness Cost each Antibiotic"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+Additionally, resistance mutations in two species, Enterococcus faecium
+and Borrelia burgorferi, showed no evidence for a cost of resistance on
+average while those recovered from all other species were on average
+costly. Mean relative fitness and 95\% CI of antibiotic resistance
+mutation associated with a given bacteria Fitness cost \textless{} 1
+indicates less fit.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{costR }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(bacteria, fitness) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(bacteria) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mean\_cost =} \FunctionTok{mean}\NormalTok{(fitness),}
+            \AttributeTok{stddev =} \FunctionTok{sd}\NormalTok{(fitness, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+            \AttributeTok{meansd\_l =}\NormalTok{ mean\_cost }\SpecialCharTok{{-}}\NormalTok{ stddev,}
+            \AttributeTok{meansd\_u =}\NormalTok{ mean\_cost }\SpecialCharTok{+}\NormalTok{ stddev) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mean\_cost, }\AttributeTok{y =}\NormalTok{bacteria))}\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =} \DecValTok{1}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_errorbar}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{xmin =}\NormalTok{ meansd\_l, }\AttributeTok{xmax =}\NormalTok{ meansd\_u))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Mean Fitness Cost"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Bacteria"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Fitness Cost per Bacterial Species"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+create a heat map with antibiotic and bacteria as the two categorical
+variables and fitness as a numeric variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{summary\_data }\OtherTok{\textless{}{-}}\NormalTok{ costR }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{drop\_na}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(bacteria, antibioticType, fitness) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{MeanFITNESS =} \FunctionTok{mean}\NormalTok{(fitness))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'bacteria', 'antibioticType'. You can
+## override using the `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(summary\_data, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ antibioticType, }\AttributeTok{y =}\NormalTok{ bacteria, }\AttributeTok{fill =}\NormalTok{ fitness)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient}\NormalTok{(}\AttributeTok{low =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{high =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Heat Map of Values by Antibiotic and Bacteria"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Antibiotic"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Bacteria"}\NormalTok{,}
+       \AttributeTok{fill =} \StringTok{"fitness"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Antibiotic_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\subsection{Analysis of Staph aureus gene
+mutations}\label{analysis-of-staph-aureus-gene-mutations}
+
+What Staph aureus gene mutations associated with fitness is \textless{}
+1, indicating less fit?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BacteriaMoreFIT }\OtherTok{\textless{}{-}}\NormalTok{ costR }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(bacteria, gene\_mutation, gene\_target, fitness) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(bacteria }\SpecialCharTok{==} \StringTok{"S. aureus"} \SpecialCharTok{\&}\NormalTok{ fitness }\SpecialCharTok{\textless{}}\FloatTok{1.0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{distinct}\NormalTok{(gene\_mutation)}
+\end{Highlighting}
+\end{Shaded}
+
+What Staph aureus gene mutations associated with fitness is
+\textgreater{} 1, indicating improved fitness?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BacteriaLessFit }\OtherTok{\textless{}{-}}\NormalTok{ costR }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(bacteria, gene\_mutation, gene\_target, fitness) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(bacteria }\SpecialCharTok{==} \StringTok{"S. aureus"} \SpecialCharTok{\&}\NormalTok{ fitness }\SpecialCharTok{\textgreater{}} \FloatTok{1.0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{distinct}\NormalTok{(gene\_mutation)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 5 gene mutations in Staph aureus associated with improved
+microbial fitness and 44 gene mutations associated with a decrease in
+fitness.
+
+\end{document}

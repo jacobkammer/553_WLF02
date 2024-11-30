@@ -1,0 +1,267 @@
+---
+title: "Antibiotic Resistance"
+author: "kammer"
+date: "2024-11-29"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(DBI)
+library(RSQLite)
+library(viridis)
+library(GGally)
+library(lattice)
+library(gt)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+Antibiotic resistance is increasing world wide in pathogenic microbial populations. Therapeutic and prophylactic use of antibiotics constitutes selective pressure that favors the evolution of antibiotic resistance strains. The durability of a resistance mutation in pathogens is partly determined by it overall fitness to the organism. Resistant mutations usually target key biochemical processes and can potentially impart a fitness cost to the microorganism. The goal of this data investigation is to study how resistance gene mutations affect the overall fitness of a microorganism.
+
+# Methods
+Evaluation of the relationship between resistance mutations and fitness was by analyzing data from the article *The fitness costs of antibiotic resistance mutations* authored by *Melnyk, Wong and Kassen*.  The data focuses on fitness effects of single chromosomal mutations events that lead to the development of antibiotic resistance.  A special emphasis is placed on gram positive organisms ,specifically Staph aureus.
+
+
+
+## Evaluate the ranges of numeric variables in the data set
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+costR <-  read.csv("Raw_data/costR.csv", stringsAsFactors = FALSE)
+costR %>% 
+  select(fitness) %>% 
+  ggplot(mapping = aes(x = fitness))+
+  geom_histogram(binwidth = 0.01)+
+  labs(title = "Range of Fitness Values")
+  theme()
+
+ggplot(data = costR, mapping = aes(x = SE))+
+  geom_histogram(binwidth = 0.01)+
+  labs(title= "Range of SE values")
+  theme_classic()
+
+ggplot(data = costR, mapping = aes(x = Selection_coefficient))+
+  geom_histogram(binwidth = 0.01)+
+  labs(title="Range of Selection coefficient values",
+       x = "Selection Coefficient")
+  theme_bw()
+
+costR %>% 
+  select(MIC) %>% 
+  ggplot(mapping = aes(x = MIC))+
+  geom_histogram(bins = 15)+
+  labs(title = "Range of Minimum Inhibitory Concentration values")
+  scale_fill_viridis_d(option = "magma")
+
+```
+
+# Relationship between Numeric Variables
+The relationship between the numeric variables of 1)fitness, 2)SE and
+3)Selection_coefficient are studied using 4 different approaches. 
+
+Scatterplot with color or size Encoding. The x and y axis encodes two ot the three variables.  Color or size is used to represent the third variable.
+
+```{r}
+ggplot(data = costR, mapping = aes(x = fitness, y = Selection_coefficient, color = SE))+
+  geom_point()+labs(title = "Scatter Plot with color encoding",
+                    x="Fitness",
+                    y = "Selection Coefficient",
+                    color = "SE")
+
+ggplot(data = costR, mapping = aes(x = fitness, y = Selection_coefficient, size = SE))+
+  geom_point()+
+  labs(title = "Scatter plot with size encoding",
+       x = "Fitness",
+       y = "Selection Coefficient",
+       size = "SE")
+```
+
+## Pair Plot (Scatterplot Matrix). The GGally package is used to create a scatterplot matrix to visualize pairwise relationships between multiple variables.
+
+```{r}
+numericonly <- costR %>% 
+  select(fitness, Selection_coefficient, SE)
+#Use the data
+ggpairs(numericonly, title = 'Pair Plot')
+
+```
+
+## Scatterplot Matrix using the Lattice package
+
+```{r}
+splom(numericonly,
+      main = "Scatterplot Matrix")
+```
+
+
+# Which mutations increae or decrease fitness
+```{r}
+
+  costR %>% 
+    select(gene_mutation, fitness) %>% 
+    na.omit() %>% 
+    filter(fitness <1.0) %>% 
+    distinct(gene_mutation)
+  
+
+costR %>% 
+    select(gene_mutation, fitness) %>% 
+    na.omit() %>% 
+    filter(fitness> 1.0) %>% 
+    distinct()
+
+```
+No apparent relationship between increase or decrease in fitness and bacterial type
+
+create ranges of fitness value and assign to general categories
+```{r echo=FALSE}
+costR %>% 
+  mutate(GroupFIT = case_when(fitness > 1.35 ~ "Most Fit of All",
+                              between(fitness, 1.25, 1.35)~ "Highly Fit",
+                              between(fitness, 1.0, 1.25)~ "Fit",
+                              between(fitness, .75, 1.0) ~ "Less Fit",
+                              between(fitness, .35, .75)~ "Much Less Fit",
+                              fitness<.35 ~ "Least Fit of All",
+                              TRUE ~ "Unknown")) %>% 
+  select(GroupFIT, bacteria) %>% 
+  group_by(GroupFIT) %>% 
+  tally() %>% 
+  mutate(pct = round(100 *(n/sum(n)), digits =2)) %>% 
+  arrange(factor(GroupFIT, levels = c("Most Fit of All", "Highly Fit",
+                                      "Fit", "Less Fit",
+                                      "Much Less Fit"),
+                 "Least Fit of All")) %>% 
+  gt() %>% 
+  tab_header(title = "Fitness Groups") %>% 
+  cols_label(GroupFIT = "Group",
+             n = "Number of organisms",
+             pct = "Percentage"
+             )
+```
+
+
+
+
+
+The cell wall is an important target of mutations that
+confer antibiotic resistance, and thus intuitively, it seems
+possible that there may be a difference in fitness costs associated
+with antibiotic resistance between Gram-positive,
+which has a much thicker layer of peptidoglycan in their
+cell wall, and Gram-negative bacteria, which has a much
+thinner cell wall.
+
+```{r}
+GramFIT <- costR %>% 
+  filter(gram_stain == "negative" | gram_stain == "positive") %>%
+  group_by(gram_stain) %>% 
+  summarise(mean_fitness = mean(fitness),
+            IQR = IQR(fitness),
+            Minumum = min(fitness),
+            Maximum = max(fitness),
+            Standard_deviation = sd(fitness))
+
+GramFIT %>% 
+  gt() %>% 
+  tab_header(title = "Differences in fitness based on gram stain") %>% 
+  cols_label(gram_stain = "Gram stain",
+             mean_fitness = "Mean Fitness",
+             IQR = "Interquantile Range",
+             Minumum="Minimum",
+             Maximum= "Maximum",
+             Standard_deviation= "Standard Deviation")
+
+
+```
+Gram-positive bacteria had a significantly
+greater fitness costs associated with resistance mutations
+(mean fitness = 0.822) when compared with Gram-negative
+bacteria (mean fitness = 0.973). Caution must be used in interpreting
+this result because there were a greater number of Gram-negative
+than Gram-positive bacteria in the data set.
+
+
+
+Mean relative fitness and 95% CI of antibiotic Resistance mutation
+associated with a specific antibiotic, Fitness cost < 1 indicates less fit
+
+```{r}
+costR %>% 
+  select(antibioticType, fitness) %>% 
+  group_by(antibioticType) %>% 
+  summarise(mean_cost = mean(fitness),
+            stddev = sd(fitness, na.rm = TRUE),
+            meansd_l = mean_cost - stddev,
+            meansd_u = mean_cost + stddev) %>% 
+  ggplot(mapping = aes(x= mean_cost, y = antibioticType))+
+  geom_point()+
+  geom_vline(xintercept = 1)+
+  geom_errorbar(mapping = aes(xmin = meansd_l, xmax = meansd_u))+
+  labs(x = "Mean Fitness Cost", y = "Antibiotic")+
+  ggtitle("Fitness Cost each Antibiotic")
+
+```
+
+Additionally, resistance mutations in two species, Enterococcus faecium and Borrelia burgorferi, showed no evidence for a cost of resistance on
+average while those recovered from all other species were
+on average costly. Mean relative fitness and 95% CI of antibiotic resistance mutation associated with a given bacteria Fitness cost < 1 indicates less fit.
+
+```{r}
+costR %>% 
+  select(bacteria, fitness) %>% 
+  group_by(bacteria) %>% 
+  summarise(mean_cost = mean(fitness),
+            stddev = sd(fitness, na.rm = TRUE),
+            meansd_l = mean_cost - stddev,
+            meansd_u = mean_cost + stddev) %>% 
+  ggplot(mapping = aes(x = mean_cost, y =bacteria))+
+  geom_point()+
+  geom_vline(xintercept = 1)+
+  geom_errorbar(mapping = aes(xmin = meansd_l, xmax = meansd_u))+
+  labs(x = "Mean Fitness Cost", y = "Bacteria")+
+  ggtitle("Fitness Cost per Bacterial Species")
+```
+
+
+
+create a heat map with antibiotic and bacteria as the two categorical variables
+and fitness as a numeric variable.
+
+```{r}
+summary_data <- costR %>%
+  drop_na() %>% 
+  group_by(bacteria, antibioticType, fitness) %>%
+  summarize(MeanFITNESS = mean(fitness))
+ggplot(summary_data, aes(x = antibioticType, y = bacteria, fill = fitness)) +
+  geom_tile() +
+  scale_fill_gradient(low = "blue", high = "red") +
+  theme_minimal() +
+  labs(title = "Heat Map of Values by Antibiotic and Bacteria",
+       x = "Antibiotic",
+       y = "Bacteria",
+       fill = "fitness")
+```
+
+
+## Analysis of Staph aureus gene mutations
+What Staph aureus gene mutations associated with fitness is < 1, indicating less fit?
+
+```{r}
+BacteriaMoreFIT <- costR %>% 
+  select(bacteria, gene_mutation, gene_target, fitness) %>% 
+  filter(bacteria == "S. aureus" & fitness <1.0) %>% 
+  distinct(gene_mutation)
+```
+
+What Staph aureus gene mutations associated with fitness is > 1, indicating improved fitness?
+
+```{r}
+BacteriaLessFit <- costR %>% 
+  select(bacteria, gene_mutation, gene_target, fitness) %>% 
+  filter(bacteria == "S. aureus" & fitness > 1.0) %>% 
+  distinct(gene_mutation)
+```
+
+There are 5 gene mutations in Staph aureus associated with improved microbial fitness and 44 gene mutations associated with a decrease in fitness.
