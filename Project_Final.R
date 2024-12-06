@@ -282,38 +282,12 @@ dbGetQuery(conn01, "SELECT * FROM fitness;")
 
 
 
-## ATB DATABASE ####
-connatb <- dbConnect(drv = RSQLite::SQLite(),
-                     "databases_WLF/ATB.db")
-
-dbWriteTable(connatb, "antibiotics", atbdf, overwrite = TRUE)
-dbWriteTable(connatb, "Bacteria", distinctBac, overwrite = TRUE)
-dbWriteTable(connatb, "Fitness", FIT, overwrite = TRUE)  
-dbWriteTable(connatb, "Reference", REF, overwrite = TRUE)
-
-dbRemoveTable(connatb, "Laboratory_standard")
-dbRemoveTable(connatb, "Antibiotic")
-dbRemoveTable(connatb, "microbial_fitness")
-
-DBI::dbListTables(connatb)#returns a list of all the table in the dragons database
-
-
-dbListFields(atb_db, "antibiotics")
-dbReadTable(atb_db, "antibiotics")
 
 
 
-antibiotic <-  dbGetQuery(conn01, "SELECT * FROM antibiotics;")
-head(antibiotic)
 
-fitnessLevel <-  dbGetQuery(conn01, "SELECT * FROM Fitness;")
-head(fitnessLevel)
 
-bacteria <-  dbGetQuery(conn01, "SELECT * FROM Bacteria;")
-head(bacteria)
 
-references <-  dbGetQuery(conn01, "SELECT * FROM Reference;")
-head(references)
 
 
 

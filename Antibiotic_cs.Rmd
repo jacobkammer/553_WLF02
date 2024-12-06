@@ -1,9 +1,11 @@
 ---
-title: "Antibiotic Resistance"
+title: "Fitness Cost of Antibiotic Resistance"
 author: "kammer"
 date: "2024-11-29"
 output:
   html_document: default
+    toc: true
+    toc_depth: 2
   pdf_document: default
 ---
 
@@ -21,10 +23,15 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction
-Antibiotic resistance is increasing world wide in pathogenic microbial populations. Therapeutic and prophylactic use of antibiotics constitutes selective pressure that favors the evolution of antibiotic resistance strains. The durability of a resistance mutation in pathogens is partly determined by it overall fitness to the organism. Resistant mutations usually target key biochemical processes and can potentially impart a fitness cost to the microorganism. 
+Antibiotic resistance is increasing world wide in pathogenic microbial populations. Therapeutic and prophylactic use of antibiotics constitutes selective pressure that favors the evolution of antibiotic resistance strains. The durability of a resistance mutation in pathogens is partly determined by it's effect on the fitness of the organism.  Antibiotic resistance mutations usually target key biochemical processes, which impart a fitness cost to the microorganism. The data set used in the evaluation was obtained from the Dryad website. The origin of the data was from the article *The fitness costs of antibiotic resistance mutations* authored by *Melnyk, Wong and Kassen*.  
 
-# Methods
-Evaluation of the relationship between resistance mutations and fitness was by analyzing data from the article *The fitness costs of antibiotic resistance mutations* authored by *Melnyk, Wong and Kassen*.  The data focuses on fitness effects of single chromosomal mutations events that lead to the development of antibiotic resistance.  A special emphasis is placed on gram positive organisms ,specifically Staph aureus.
+# Data set Metrics
+The data set is composed of multiple instances of common pathogenic microorganisms, both gram positive and gram cost, Selection coefficient, standard error, specific gene mutations, antibiotics and antibiotic class.  Additional information included reference population, gene target and bacterial medium used to grow the different bacterial species. The data focuses on fitness effects of **single** chromosomal mutations.
+
+# Analysis
+The analysis surveyed the distribution of the numeric variables and their relationships.  The principle goal of the analysis was to study the effects of antibiotic resistance gene mutations on the fitness of Staphylococcus aureus.  This analysis will contribute to the development of a computer model to study the effects of antibiotic resistance on the growth of Staphycococcus aureus in blood. 
+
+
 
 
 
@@ -62,11 +69,11 @@ p2
 p3
 ```
 
-# Relationship between Numeric Variables
+## Relationship between Numeric Variables
 The relationship between the numeric variables of 1)fitness, 2)SE and
-3)Selection_coefficient are studied using 4 different approaches. 
+3)Selection_coefficient are studied using 4 different methods or graphing techniques. 
 
-Scatterplot with color or size Encoding. The x and y axis encodes two ot the three variables.  Color or size is used to represent the third variable.
+Scatter plot with color or size Encoding. The x and y axis encodes two of the three variables.  Color or size is used to represent the third variable.
 
 ```{r echo=TRUE}
 p4 <- ggplot(data = costR, mapping = aes(x = fitness, y = Selection_coefficient, color = SE))+
@@ -84,7 +91,7 @@ p5 <- ggplot(data = costR, mapping = aes(x = fitness, y = Selection_coefficient,
 p5
 ```
 
-Pair Plot (Scatterplot Matrix). The GGally package is used to create a scatterplot matrix to visualize pairwise relationships between multiple variables.
+Pair Plot (Scatter plot Matrix). The 'GGally' package is used to create a scatter plot matrix to visualize pairwise relationships between multiple variables.
 
 ```{r}
 numericonly <- costR %>% 
@@ -94,7 +101,7 @@ g <- ggpairs(numericonly, title = 'Pair Plot')
 g
 ```
 
-## Scatterplot Matrix using the Lattice package
+Scatter plot Matrix using the 'Lattice' package
 
 ```{r echo=TRUE}
 splom(numericonly,
@@ -104,7 +111,7 @@ splom(numericonly,
 
 
 
-create ranges of fitness value and assign to general categories
+Create ranges of fitness value and assign to general categories.  Encode the results in a table using the 'gt()' package.
 ```{r echo=FALSE}
 costR %>% 
   mutate(GroupFIT = case_when(fitness > 1.35 ~ "Most Fit of All",
@@ -133,16 +140,10 @@ costR %>%
 ```
 
 
-
-
+# Analysis of Staphycococcal aureus.
 
 The cell wall is an important target of mutations that
-confer antibiotic resistance, and thus intuitively, it seems
-possible that there may be a difference in fitness costs associated
-with antibiotic resistance between Gram-positive,
-which has a much thicker layer of peptidoglycan in their
-cell wall, and Gram-negative bacteria, which has a much
-thinner cell wall.
+confer antibiotic resistance.  The bacterial cell wall is built with alternating monomers of N-Acetylglucosamine and n-Acetylmuramic acid forming the peptidoglycan of the cell wall.  Staphycococcus aureus and other gram positive organisms have a much greater amount of peptidoglycan in the cell wall.  This biochemical difference in cell wall structure suggests that there could be a significant difference in fitness costs between gram positive and gram negative organisms.  
 
 ```{r echo=FALSE}
 GramFIT <- costR %>% 
@@ -164,20 +165,8 @@ GramFIT %>%
              Maximum= "Maximum",
              Standard_deviation= "Standard Deviation")
 
-
+GramFIT
 ```
-
-
-boxplot of fitness between gram + and gram - organisms does not show
-much of a difference between the two groups.
-
-```{r}
-costR %>% 
-  ggplot(mapping = aes(x=gram_stain, y=fitness))+
-  geom_boxplot()
-```
-
-
 
 Gram-positive bacteria had a significantly
 greater fitness costs associated with resistance mutations
@@ -186,6 +175,19 @@ bacteria (mean fitness = 0.973). Caution must be used in interpreting
 this result because there were a greater number of Gram-negative
 than Gram-positive bacteria in the data set.
 
+
+```{r}
+costR %>% 
+  ggplot(mapping = aes(x=gram_stain, y=fitness))+
+  geom_boxplot()
+```
+
+A boxplot of fitness between gram + and gram - organisms does not show
+much of a difference between the two groups.
+
+
+
+# Effect of antibiotic class on fitness
 ```{r}
 costR %>% 
   select(antibioticClass, fitness) %>% 
@@ -227,12 +229,9 @@ costR %>%
 
 ```
 
-The antibiotic Trimethoprim has mean fitness of cost of greater than 1, indicating greater fitness.  This antibiotic is a member of the dihydrofolate reductase inhibitor class. 
+The antibiotic Trimethoprim has mean fitness of cost of greater than 1, indicating that the gene mutation that creates resistance to Trimethoprim does not negatively impact microbial fitness. Trimethoprim is a member of the drug class dihydrofolate reductase inhibitors.  This finding correlates with the graph of fitness and drug class. 
 
 
-Additionally, resistance mutations in two species, Enterococcus faecium and Borrelia burgorferi, showed no evidence for a cost of resistance on
-average while those recovered from all other species were
-on average costly. Mean relative fitness and 95% CI of antibiotic resistance mutation associated with a given bacteria Fitness cost < 1 indicates less fit.
 
 ```{r echo=FALSE}
 costR %>% 
@@ -249,6 +248,8 @@ costR %>%
   labs(x = "Mean Fitness Cost", y = "Bacteria")+
   ggtitle("Fitness Cost per Bacterial Species")
 ```
+Resistance mutations in two species, Enterococcus faecium and Borrelia burgorferi, showed no evidence for a fitness cost.  Other bacteria species had a fitness cost to 
+Mean relative fitness and 95% CI of antibiotic resistance mutation associated with a given bacteria Fitness cost < 1 indicates less fit.
 
 
 
